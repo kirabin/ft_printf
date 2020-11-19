@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:43:38 by dmilan            #+#    #+#             */
-/*   Updated: 2020/11/18 19:58:05 by dmilan           ###   ########.fr       */
+/*   Updated: 2020/11/19 19:24:18 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,17 @@ char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s1, char const *set);
 char				**ft_split(char const *s, char c);
 char				*ft_itoa(int n);
+char				*ft_uitoa(unsigned int n);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *s, int fd);
+void				ft_putstrn_fd(char *s, int n, int fd);
 void				ft_putendl_fd(char *s, int fd);
-void				ft_putnbr_fd(int n, int fd);
+void				ft_puti_fd(int n, int fd);
+void				ft_putui_fd(unsigned int n, int fd);
+void				ft_putui_hex_fd(unsigned int n, int is_upper, int fd);
+void				ft_putul_hex_fd(unsigned long n, int is_upper, int fd);
+
 
 t_list				*ft_lstnew(void *content);
 void				ft_lstadd_front(t_list **lst, t_list *new);
@@ -77,10 +83,14 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 int					ft_isspace(char c);
 int					ft_isblank(char c);
 int					ft_leni(int n);
+int					ft_lenui(unsigned int n);
+int					ft_lenui_hex(unsigned int n);
+int					ft_lenul_hex(unsigned long n);
 char				*ft_strnew(int n);
 char				*ft_strjoinfree(char *s1, const char *s2);
 int					ft_strcount(const char *s, char c);
 int					ft_min(int a, int b);
 int					ft_max(int a, int b);
+const char			*ft_strskip(const char *s, int (*is_that)(int));
 
 #endif

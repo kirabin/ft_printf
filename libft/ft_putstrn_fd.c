@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_max.c                                           :+:      :+:    :+:   */
+/*   ft_putstrn_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/18 19:22:54 by dmilan            #+#    #+#             */
-/*   Updated: 2020/11/19 11:27:51 by dmilan           ###   ########.fr       */
+/*   Created: 2020/11/19 12:51:29 by dmilan            #+#    #+#             */
+/*   Updated: 2020/11/19 12:52:50 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_max(int a, int b)
+void	ft_putstrn_fd(char *s, int n, int fd)
 {
-	if (a > b)
-		return (a);
-	return (b);
+	int		i;
+	
+	i = 0;
+	if (!s)
+		return ;
+	while (s[i] && i < n)
+	{
+		ft_putchar_fd(s[i], fd);
+		i++;
+	}
 }

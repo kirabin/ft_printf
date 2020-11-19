@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_max.c                                           :+:      :+:    :+:   */
+/*   ft_putul_hex_fd.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/18 19:22:54 by dmilan            #+#    #+#             */
-/*   Updated: 2020/11/19 11:27:51 by dmilan           ###   ########.fr       */
+/*   Created: 2020/11/19 18:49:39 by dmilan            #+#    #+#             */
+/*   Updated: 2020/11/19 18:50:52 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_max(int a, int b)
+void		ft_putul_hex_fd(unsigned long n, int is_upper, int fd)
 {
-	if (a > b)
-		return (a);
-	return (b);
+	if (0 <= n && n <= 9)
+		ft_putchar_fd(n + '0', fd);
+	else if (10 <= n && n <= 15)
+	{
+		if (is_upper)
+			ft_putchar_fd(n - 10 + 'A', 1);
+		else
+			ft_putchar_fd(n - 10 + 'a', 1);
+	}
+	else
+	{
+		ft_putul_hex_fd(n / 16, is_upper, fd);
+		ft_putul_hex_fd(n % 16, is_upper, fd);
+	}
 }

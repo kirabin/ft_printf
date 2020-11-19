@@ -1,7 +1,12 @@
 .DS_Store
 .vscode/
 a.out
-a.out.dSYN/
+a.out.dSYM/
 ft_printf.dSYM/
 libft/*.o
 libft/*.a
+*.o
+*.a
+main.c
+pft/*
+pft

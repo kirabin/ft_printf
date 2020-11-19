@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strskip.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/17 10:05:03 by dmilan            #+#    #+#             */
-/*   Updated: 2020/11/17 10:07:38 by dmilan           ###   ########.fr       */
+/*   Created: 2020/11/19 16:39:26 by dmilan            #+#    #+#             */
+/*   Updated: 2020/11/19 16:45:04 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		main(void)
+const char		*ft_strskip(const char *s, int (*is_that)(int))
 {
-	int	a;
-
-	a = ft_strlen("2342");
-	return (0);
+	if (!s || !is_that)
+		return (s);
+	while (*s && is_that(*s))
+	{
+		s++;
+	}
+	return (s);
 }

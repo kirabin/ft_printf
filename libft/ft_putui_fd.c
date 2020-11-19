@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_max.c                                           :+:      :+:    :+:   */
+/*   ft_putui_fd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/18 19:22:54 by dmilan            #+#    #+#             */
-/*   Updated: 2020/11/19 11:27:51 by dmilan           ###   ########.fr       */
+/*   Created: 2020/11/19 11:16:19 by dmilan            #+#    #+#             */
+/*   Updated: 2020/11/19 11:22:30 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_max(int a, int b)
+void	ft_putui_fd(unsigned int n, int fd)
 {
-	if (a > b)
-		return (a);
-	return (b);
+	if (0 <= n && n <= 9)
+		ft_putchar_fd(n + '0', fd);
+	else
+	{
+		ft_putui_fd(n / 10, fd);
+		ft_putui_fd(n % 10, fd);
+	}
 }

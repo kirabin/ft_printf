@@ -6,62 +6,72 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 11:12:32 by dmilan            #+#    #+#             */
-/*   Updated: 2020/11/19 18:48:41 by dmilan           ###   ########.fr       */
+/*   Updated: 2020/11/20 18:47:08 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void		print_xn(t_print *print, int is_upper)
+static void		print_x_default(t_print *p, int is_upper)
 {
-	int				output_len;
-	unsigned int	u;
+	unsigned int	arg;
 
-	u = (unsigned int)va_arg(print->valist, unsigned int);
-	output_len = ft_lenui_hex(u);
-	if (print->format.left_aligned)
+	arg = va_arg(p->valist, unsigned int);
+	if (p->f.precision_given && p->f.precision == 0 && arg == 0)
 	{
-		ft_putui_hex_fd(u, is_upper, 1);
-		fill_width(print->format.fill, print->format.width - output_len);
+		fill_width(p->f.fill, p->f.width);
+		return ;
 	}
-	else
-	{
-		fill_width(print->format.fill, print->format.width - output_len);
-		ft_putui_hex_fd(u, is_upper, 1);
-	}
-	print->char_printed += ft_max(print->format.width, output_len);
+	p->f.arg_len = ft_lenui_hex(arg);
+	p->f.precision -= p->f.arg_len;
+	p->f.precision = p->f.precision < 0 ? 0 : p->f.precision;
+	p->f.width -= p->f.precision + p->f.arg_len;
+	p->f.width = p->f.width < 0 ? 0 : p->f.width;
+	p->f.fill = p->f.precision_given ? ' ' : p->f.fill;
+	if (p->f.precision == 0 && p->f.fill == '0')
+		ft_swapi(&(p->f.precision), &(p->f.width));
+	fill_width(p->f.fill, p->f.width * !p->f.left_aligned);
+	fill_width('0', p->f.precision);
+	ft_putui_hex_fd(arg, is_upper, 1);
+	fill_width(p->f.fill, p->f.width * p->f.left_aligned);
+	p->printed += p->f.precision + p->f.arg_len + p->f.width;
 }
 
-static void		print_xl(t_print *print, int is_upper)
+static void		print_xl(t_print *p, int is_upper)
 {
-	int				output_len;
-	unsigned long	l;
+	unsigned long	arg;
 
-	l = (unsigned long)va_arg(print->valist, unsigned long);
-	output_len = ft_lenul_hex(l);
-	if (print->format.left_aligned)
+	arg = va_arg(p->valist, unsigned int);
+	if (p->f.precision_given && p->f.precision == 0 && arg == 0)
 	{
-		ft_putul_hex_fd(l, is_upper, 1);
-		fill_width(print->format.fill, print->format.width - output_len);
+		fill_width(p->f.fill, p->f.width);
+		return ;
 	}
-	else
-	{
-		fill_width(print->format.fill, print->format.width - output_len);
-		ft_putul_hex_fd(l, is_upper, 1);
-	}
-	print->char_printed += ft_max(print->format.width, output_len);
+	p->f.arg_len = ft_lenul_hex(arg);
+	p->f.precision -= p->f.arg_len;
+	p->f.precision = p->f.precision < 0 ? 0 : p->f.precision;
+	p->f.width -= p->f.precision + p->f.arg_len;
+	p->f.width = p->f.width < 0 ? 0 : p->f.width;
+	p->f.fill = p->f.precision_given ? ' ' : p->f.fill;
+	if (p->f.precision == 0 && p->f.fill == '0')
+		ft_swapi(&(p->f.precision), &(p->f.width));
+	fill_width(p->f.fill, p->f.width * !p->f.left_aligned);
+	fill_width('0', p->f.precision);
+	ft_putul_hex_fd(arg, is_upper, 1);
+	fill_width(p->f.fill, p->f.width * p->f.left_aligned);
+	p->printed += p->f.precision + p->f.arg_len + p->f.width;
 }
 
 void			print_x(t_print *print, int is_upper)
 {
-	if (print->format.length == 'n')
-		print_xn(print, is_upper);
-	if (print->format.length == 'l')
+	if (print->f.length == 'l')
 		print_xl(print, is_upper);
-	// if (print->format.length == 'L')
-	// 	print_xn(print, is_upper);
-	// if (print->format.length == 'h')
-	// 	print_xn(print, is_upper);
-	// if (print->format.length == 'H')
-	// 	print_xn(print, is_upper);
+	else if (print->f.length == 'L')
+		print_x_default(print, is_upper);
+	else if (print->f.length == 'h')
+		print_x_default(print, is_upper);
+	else if (print->f.length == 'H')
+		print_x_default(print, is_upper);
+	else
+		print_x_default(print, is_upper);
 }

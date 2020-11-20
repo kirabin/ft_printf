@@ -6,7 +6,7 @@
 #    By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/28 11:34:55 by dmilan            #+#    #+#              #
-#    Updated: 2020/11/19 19:23:34 by dmilan           ###   ########.fr        #
+#    Updated: 2020/11/20 16:01:46 by dmilan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,8 +50,8 @@ SRC       = ft_atoi.c \
 			ft_memmove.c \
 			ft_memset.c \
 			ft_min.c \
-			ft_putchar_fd.c \
-			ft_putendl_fd.c \
+			ft_putc_fd.c \
+			ft_putuc_fd.c \
 			ft_puti_fd.c \
 			ft_putstr_fd.c \
 			ft_putstrn_fd.c \
@@ -76,7 +76,8 @@ SRC       = ft_atoi.c \
 			ft_strskip.c \
 			ft_substr.c \
 			ft_tolower.c \
-			ft_toupper.c
+			ft_toupper.c \
+			ft_swapi.c
 OBJ       = $(SRC:.c=.o)
 
 .PHONY: all clean fclean re

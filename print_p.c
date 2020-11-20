@@ -6,33 +6,36 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 10:53:07 by dmilan            #+#    #+#             */
-/*   Updated: 2020/11/19 18:55:56 by dmilan           ###   ########.fr       */
+/*   Updated: 2020/11/20 18:48:37 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	print_p(t_print *print)
+void	print_p(t_print *p)
 {
-	int				output_len;
-	void			*p;
-	long			l;
+	long	arg;
+	void	*arg_p;
 
-	p = va_arg(print->valist, void*);
-	l = (long)p;
-	output_len = ft_lenul_hex(l) + 2;
-	
-	if (print->format.left_aligned)
+	arg_p = va_arg(p->valist, void *);
+	arg = (long)arg_p;
+	if (p->f.precision_given && p->f.precision == 0 && arg == 0)
 	{
-		ft_putstr_fd("0x", 1);
-		ft_printf("%lx", l);
-		fill_width(print->format.fill, print->format.width - output_len);
+		fill_width(p->f.fill, p->f.width);
+		return ;
 	}
-	else
-	{
-		fill_width(print->format.fill, print->format.width - output_len);
-		ft_putstr_fd("0x", 1);
-		ft_printf("%lx", l);
-	}
-	print->char_printed += ft_max(print->format.width, output_len);
+	p->f.arg_len = ft_lenul_hex(arg) + 2;
+	p->f.precision -= p->f.arg_len;
+	p->f.precision = p->f.precision < 0 ? 0 : p->f.precision;
+	p->f.width -= p->f.precision + p->f.arg_len;
+	p->f.width = p->f.width < 0 ? 0 : p->f.width;
+	p->f.fill = p->f.precision_given ? ' ' : p->f.fill;
+	if (p->f.precision == 0 && p->f.fill == '0')
+		ft_swapi(&(p->f.precision), &(p->f.width));
+	fill_width(p->f.fill, p->f.width * !p->f.left_aligned);
+	fill_width('0', p->f.precision);
+	ft_putstr_fd("0x", 1);
+	ft_putul_hex_fd(arg, 0, 1);
+	fill_width(p->f.fill, p->f.width * p->f.left_aligned);
+	p->printed += p->f.precision + p->f.arg_len + p->f.width;
 }

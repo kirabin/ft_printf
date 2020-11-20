@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 11:48:02 by dmilan            #+#    #+#             */
-/*   Updated: 2020/11/19 11:48:27 by dmilan           ###   ########.fr       */
+/*   Updated: 2020/11/20 13:10:47 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	ft_putui_hex_fd(unsigned int n, int is_upper, int fd)
 {
 	if (0 <= n && n <= 9)
-		ft_putchar_fd(n + '0', fd);
+		ft_putc_fd(n + '0', fd);
 	else if (10 <= n && n <= 15)
 	{
 		if (is_upper)
-			ft_putchar_fd(n - 10 + 'A', 1);
+			ft_putc_fd(n - 10 + 'A', 1);
 		else
-			ft_putchar_fd(n - 10 + 'a', 1);
+			ft_putc_fd(n - 10 + 'a', 1);
 	}
 	else
 	{

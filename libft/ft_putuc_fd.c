@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstrn_fd.c                                    :+:      :+:    :+:   */
+/*   ft_putuc.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/19 12:51:29 by dmilan            #+#    #+#             */
-/*   Updated: 2020/11/20 13:29:25 by dmilan           ###   ########.fr       */
+/*   Created: 2020/11/20 13:00:18 by dmilan            #+#    #+#             */
+/*   Updated: 2020/11/20 13:00:50 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstrn_fd(char *s, int n, int fd)
+void	ft_putuc_fd(unsigned char c, int fd)
 {
-	int		i;
-	
-	i = 0;
-	if (!s)
-		return ;
-	while (s[i] && i < n)
-	{
-		ft_putc_fd(s[i], fd);
-		i++;
-	}
+	write(fd, &c, 1);
 }

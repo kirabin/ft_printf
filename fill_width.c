@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 19:18:59 by dmilan            #+#    #+#             */
-/*   Updated: 2020/11/19 11:50:28 by dmilan           ###   ########.fr       */
+/*   Updated: 2020/11/20 13:13:49 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	fill_width(char fill, int n)
 	i = 0;
 	while (i < n)
 	{
-		ft_putchar_fd(fill, 1);
+		ft_putc_fd(fill, 1);
 		i++;
 	}
 }

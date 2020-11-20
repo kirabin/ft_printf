@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 10:01:50 by dmilan            #+#    #+#             */
-/*   Updated: 2020/11/19 19:49:04 by dmilan           ###   ########.fr       */
+/*   Updated: 2020/11/20 19:08:43 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,29 +15,28 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>  // delete on push
 # include "libft/libft.h"
 
 typedef struct		s_format
 {
+	int				arg_len;
+	char			*arg_s;
 	int				width;
 	int				precision;
+	bool			precision_given;
 	bool			left_aligned;
-	bool			is_negative;
 	bool			alternate_form;
-	bool			add_blank;
-	bool			add_sign;
 	char			fill;
+	char			sign;
 	char			type;
-	int				length;		// 'n' 'l' 'L' 'h' 'H'
-	int				arg_len;
+	char			length;
 }					t_format;
 
 typedef struct		s_print
 {
-	int				char_printed;  // excluding \0 of strings
+	int				printed;
 	va_list			valist;
-	t_format		format;
+	t_format		f;
 }					t_print;
 
 int					ft_printf(const char *format, ...);
@@ -49,5 +48,8 @@ void				print_di(t_print *print);
 void				print_u(t_print *print);
 void				print_x(t_print *print, bool is_upper);
 void				print_percent(t_print *print);
+t_print				default_print(void);
+t_format			default_format(void);
+const char			*get_f_length(t_print *print, const char *format_string);
 
 #endif

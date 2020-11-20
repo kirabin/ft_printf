@@ -6,14 +6,16 @@
 #    By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 14:39:50 by dmilan            #+#    #+#              #
-#    Updated: 2020/11/19 19:51:49 by dmilan           ###   ########.fr        #
+#    Updated: 2020/11/20 18:57:59 by dmilan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME      = libftprintf.a
+LIB       = libft/libft.a
 FLAGS     = -Wall -Wextra -Werror
 SRC       = fill_width.c \
 			ft_printf.c \
+			ft_printf_support.c \
 			print_c.c \
 			print_di.c \
 			print_p.c \
@@ -26,10 +28,10 @@ HEADER    = ft_printf.h
 
 all: $(NAME)
 
-lib:
+$(LIB):
 	make all -C libft/
 
-$(NAME): $(OBJ) lib
+$(NAME): $(OBJ) $(LIB)
 	ar -rc $(NAME) $(OBJ) libft/*.o
 	ranlib $(NAME)
 

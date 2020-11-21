@@ -6,7 +6,7 @@
 #    By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/18 14:39:50 by dmilan            #+#    #+#              #
-#    Updated: 2020/11/20 18:57:59 by dmilan           ###   ########.fr        #
+#    Updated: 2020/11/21 13:25:57 by dmilan           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ $(NAME): $(OBJ) $(LIB)
 	ranlib $(NAME)
 
 build:
-	gcc -g $(FLAGS) main.c $(SRC) -lftprintf -L.
+	gcc $(FLAGS) main.c $(SRC) -lftprintf -L.
 	./a.out
 
 %.o: %.c $(HEADER)

@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 12:51:29 by dmilan            #+#    #+#             */
-/*   Updated: 2020/11/20 13:29:25 by dmilan           ###   ########.fr       */
+/*   Updated: 2020/11/21 12:46:21 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_putstrn_fd(char *s, int n, int fd)
 {
 	int		i;
-	
+
 	i = 0;
 	if (!s)
 		return ;

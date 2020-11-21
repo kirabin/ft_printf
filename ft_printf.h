@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 10:01:50 by dmilan            #+#    #+#             */
-/*   Updated: 2020/11/20 19:08:43 by dmilan           ###   ########.fr       */
+/*   Updated: 2020/11/21 12:58:07 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ typedef struct		s_format
 	char			*arg_s;
 	int				width;
 	int				precision;
-	bool			precision_given;
-	bool			left_aligned;
-	bool			alternate_form;
+	t_bool			precision_given;
+	t_bool			left_aligned;
+	t_bool			alternate_form;
 	char			fill;
 	char			sign;
 	char			type;
@@ -46,7 +46,7 @@ void				print_s(t_print *print);
 void				print_p(t_print *print);
 void				print_di(t_print *print);
 void				print_u(t_print *print);
-void				print_x(t_print *print, bool is_upper);
+void				print_x(t_print *print, t_bool is_upper);
 void				print_percent(t_print *print);
 t_print				default_print(void);
 t_format			default_format(void);

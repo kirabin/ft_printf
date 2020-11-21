@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/28 11:43:38 by dmilan            #+#    #+#             */
-/*   Updated: 2020/11/20 16:03:33 by dmilan           ###   ########.fr       */
+/*   Updated: 2020/11/21 12:56:27 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
-typedef int			bool;
+typedef int			t_bool;
 
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);
@@ -69,7 +69,6 @@ void				ft_putui_fd(unsigned int n, int fd);
 void				ft_putui_hex_fd(unsigned int n, int is_upper, int fd);
 void				ft_putul_hex_fd(unsigned long n, int is_upper, int fd);
 
-
 t_list				*ft_lstnew(void *content);
 void				ft_lstadd_front(t_list **lst, t_list *new);
 int					ft_lstsize(t_list *lst);
@@ -94,6 +93,5 @@ int					ft_min(int a, int b);
 int					ft_max(int a, int b);
 const char			*ft_strskip(const char *s, int (*is_that)(int));
 void				ft_swapi(int *a, int *b);
-
 
 #endif

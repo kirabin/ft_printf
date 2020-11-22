@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 10:01:50 by dmilan            #+#    #+#             */
-/*   Updated: 2020/11/21 12:58:07 by dmilan           ###   ########.fr       */
+/*   Updated: 2020/11/22 16:32:52 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void				fill_width(char fill, int n);
 void				print_c(t_print *print);
 void				print_s(t_print *print);
 void				print_p(t_print *print);
-void				print_di(t_print *print);
-void				print_u(t_print *print);
+int					print_di(t_print *print);
+int					print_u(t_print *print);
 void				print_x(t_print *print, t_bool is_upper);
 void				print_percent(t_print *print);
 t_print				default_print(void);

@@ -6,7 +6,7 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 09:56:21 by dmilan            #+#    #+#             */
-/*   Updated: 2020/11/20 19:08:10 by dmilan           ###   ########.fr       */
+/*   Updated: 2020/11/22 16:40:04 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,11 @@ static const char	*strip_format(t_print *print, const char *format_string)
 	return (format_string);
 }
 
-static void			print_format(t_print *print)
+static int			print_format(t_print *print)
 {
+	t_bool flag;
+
+	flag = 1;
 	if (print->f.type == 'c')
 		print_c(print);
 	else if (print->f.type == 's')
@@ -87,17 +90,16 @@ static void			print_format(t_print *print)
 	else if (print->f.type == 'p')
 		print_p(print);
 	else if (print->f.type == 'd' || print->f.type == 'i')
-		print_di(print);
+		flag = print_di(print);
 	else if (print->f.type == 'u')
-		print_u(print);
+		flag = print_u(print);
 	else if (print->f.type == 'x')
 		print_x(print, 0);
 	else if (print->f.type == 'X')
 		print_x(print, 1);
 	else if (print->f.type == '%')
 		print_percent(print);
-	else
-		ft_putstr_fd("sorry, not supported\n", 1);
+	return (flag);
 }
 
 int					ft_printf(const char *format_string, ...)
@@ -114,7 +116,8 @@ int					ft_printf(const char *format_string, ...)
 		{
 			print.f = default_format();
 			format_string = strip_format(&print, ++format_string);
-			print_format(&print);
+			if (!print_format(&print))
+				return (-1);
 		}
 		else
 		{

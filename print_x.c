@@ -6,22 +6,29 @@
 /*   By: dmilan <dmilan@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 11:12:32 by dmilan            #+#    #+#             */
-/*   Updated: 2020/11/20 18:47:08 by dmilan           ###   ########.fr       */
+/*   Updated: 2020/11/22 16:26:30 by dmilan           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static	int		zero_precision_case(t_print *p, unsigned int arg)
+{
+	if (p->f.precision_given && p->f.precision == 0 && arg == 0)
+	{
+		fill_width(p->f.fill, p->f.width);
+		return (1);
+	}
+	return (0);
+}
 
 static void		print_x_default(t_print *p, int is_upper)
 {
 	unsigned int	arg;
 
 	arg = va_arg(p->valist, unsigned int);
-	if (p->f.precision_given && p->f.precision == 0 && arg == 0)
-	{
-		fill_width(p->f.fill, p->f.width);
+	if (zero_precision_case(p, arg))
 		return ;
-	}
 	p->f.arg_len = ft_lenui_hex(arg);
 	p->f.precision -= p->f.arg_len;
 	p->f.precision = p->f.precision < 0 ? 0 : p->f.precision;
